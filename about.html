@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About - Unix Hell Studicon</title>
+  <style>
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #182929, #0f1314);
+      color: #e0e6f3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    nav.navbar {
+      width: 100%;
+      background: #02141e;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      padding: 18px 0;
+      box-shadow: 0 0 18px #08f2ff88;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      user-select: none;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    nav.navbar a {
+      color: #06f2ff;
+      text-decoration: none;
+      font-size: 1.15rem;
+      padding: 10px 22px;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #06f2ff33;
+    }
+    nav.navbar a:hover,
+    nav.navbar a:focus {
+      color: #f04cf0;
+      border-color: #f04cf0;
+      box-shadow: 0 0 20px #f04cf088;
+      outline-offset: 4px;
+      outline: none;
+    }
+
+    /* Header */
+    header {
+      margin: 70px 0 30px;
+      width: 100%;
+      max-width: 720px;
+      text-shadow: 0 0 15px #06f2ffaa;
+    }
+    header h1 {
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      color: #08f2ff;
+    }
+
+    /* Profile picture */
+    .profile-pic {
+      margin: 0 auto 40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow:
+        0 0 30px #06f2ffcc,
+        inset 0 0 15px #0ff9ffcc;
+      border: 5px solid #0bb;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: default;
+      user-select: none;
+    }
+    .profile-pic:hover,
+    .profile-pic:focus {
+      transform: scale(1.05);
+      box-shadow:
+        0 0 45px #f04cf0ee,
+        inset 0 0 25px #f04cf0cc;
+      outline: none;
+    }
+
+    /* Info box */
+    .info {
+      max-width: 720px;
+      margin: 0 15px 60px;
+      background: rgba(1, 10, 19, 0.85);
+      padding: 30px 36px;
+      border-radius: 20px;
+      box-shadow:
+        0 0 35px #08f2ffcc,
+        inset 0 0 45px #05b4d466;
+      text-align: left;
+      color: #b6e7f5;
+      user-select: text;
+      transition: box-shadow 0.4s ease;
+    }
+    .info:hover,
+    .info:focus-within {
+      box-shadow:
+        0 0 50px #f04cf0cc,
+        inset 0 0 60px #f04cf055;
+    }
+
+    .info h2 {
+      margin-top: 0;
+      font-size: 2.4rem;
+      color: #0ff;
+      text-shadow: 0 0 10px #0bb;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .info p {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      color: #d0f0ffdd;
+    }
+
+    .hobbies {
+      margin-top: 25px;
+      font-style: italic;
+      color: #aaf0ffcc;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      padding: 22px 12px;
+      font-size: 0.95rem;
+      color: #499aadcc;
+      text-shadow: 0 0 6px #000;
+      background: #010c17;
+      width: 100%;
+      text-align: center;
+      user-select: none;
+      letter-spacing: 0.1em;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      nav.navbar {
+        gap: 15px;
+        padding: 12px 0;
+      }
+      nav.navbar a {
+        font-size: 1rem;
+        padding: 8px 14px;
+      }
+      header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+      .info {
+        padding: 24px 20px;
+        width: 95%;
+      }
+      .info h2 {
+        font-size: 1.8rem;
+      }
+      .info p {
+        font-size: 1.1rem;
+      }
+      .hobbies {
+        font-size: 1rem;
+      }
+      .profile-pic {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Primary Navigation">
+    <a href="home.html" tabindex="0">Home</a>
+    <a href="dashboard.html" tabindex="0">Dashboard</a>
+    <a href="about.html" tabindex="0" aria-current="page">About</a>
+    <a href="contact.html" tabindex="0">Contact</a>
+  </nav>
+
+  <header>
+    <h1>About Me</h1>
+  </header>
+
+  <img src="profile.jpg" alt="Profile Picture" class="profile-pic" tabindex="0" />
+
+  <section class="info" tabindex="0">
+    <h2>Unix Hell Studicon</h2>
+    <p>
+      Hello! I'm Unix Hell Studicon, a passionate developer and tech enthusiast.
+      I love building futuristic projects like JARVIS voice assistants and cool interactive websites.
+    </p>
+    <p>
+      I focus on clean, elegant design and practical features that bring value to users.
+      My coding journey includes HTML, CSS, JavaScript, Python, and game development.
+    </p>
+    <p class="hobbies">
+      Hobbies: Blender 3D modeling, gaming, exploring AI, watching sci-fi movies, and learning new tech every day.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Unix Hell Studicon. All rights reserved.
+  </footer>
+
+</body>
+</html>

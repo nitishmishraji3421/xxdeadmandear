@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Build JARVIS - Unix Hell Studicon</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 0 18px #0bb;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px #f0c;
+    }
+    .card h3 {
+      font-size: 1.2em;
+      color: #0bb;
+      text-shadow: 0 0 5px #0bb;
+      margin-bottom: 10px;
+    }
+    .step-description {
+      font-size: 0.95em;
+      color: #222;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 12px 16px;
+      border-radius: 12px;
+      margin-top: 8px;
+      line-height: 1.5;
+      display: none;
+    }
+    .card.expanded .step-description {
+      display: block;
+    }
+
+    .search-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 600px;
+      margin: 25px auto;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .search-box input {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 2px solid #0bb;
+      background: rgba(255,255,255,0.95);
+      font-size: 1em;
+      outline: none;
+    }
+    .search-box button {
+      padding: 12px 18px;
+      background-color: #0bb;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .search-box button:hover {
+      background-color: #099;
+      box-shadow: 0 0 12px #0bb;
+    }
+
+    .no-results {
+      text-align: center;
+      color: #777;
+      font-style: italic;
+      font-size: 1em;
+      margin-top: 30px;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .search-box {
+        flex-direction: column;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="dashboard-bg.mp4" type="video/mp4" />
+    Your browser does not support HTML5 video.
+  </video>
+
+  <div class="overlay">
+    <header>
+      <h2>Build J.A.R.V.I.S</h2>
+      <a href="dashboard.html" class="back-button">← Back</a>
+    </header>
+
+    <!-- Search bar -->
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search steps like 'voice', 'camera', 'GUI'..." />
+      <button onclick="searchSteps()">Search</button>
+    </div>
+
+    <!-- Steps Section -->
+    <section class="grid" id="stepsGrid">
+      <div class="card" onclick="toggleStep(this)">
+        <h3>Step 1: GUI Setup</h3>
+        <div class="step-description">
+          Design a dynamic graphical interface using Python's Tkinter or PyQt. Include widgets for voice logs, responses, status, and control buttons.
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleStep(this)">
+        <h3>Step 2: Voice Assistant</h3>
+        <div class="step-description">
+          Integrate `speech_recognition` and `pyttsx3` to enable voice recognition and AI speech replies. Add hotword detection.
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleStep(this)">
+        <h3>Step 3: Command Execution</h3>
+        <div class="step-description">
+          Add control to run system commands using Python's `os` and `subprocess` modules — open apps, shut down, or manage files.
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleStep(this)">
+        <h3>Step 4: App Integration</h3>
+        <div class="step-description">
+          Automate app access: YouTube, Chrome, VS Code, File Explorer, etc. using libraries like `pyautogui` or `webbrowser`.
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleStep(this)">
+        <h3>Step 5: Online Search</h3>
+        <div class="step-description">
+          Enable intelligent web search via APIs (Google, WolframAlpha, Wikipedia) and web scraping using BeautifulSoup.
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleStep(this)">
+        <h3>Step 6: Code Execution</h3>
+        <div class="step-description">
+          Allow executing code snippets (Python, C++) using `exec()`, `eval()`, or via terminal emulation. Ensure sandboxing for safety.
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleStep(this)">
+        <h3>Step 7: Screen Sharing</h3>
+        <div class="step-description">
+          Stream screen content using `pyautogui`, `socket`, or `opencv` to another device or network display for live monitoring.
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleStep(this)">
+        <h3>Step 8: Camera & Audio Control</h3>
+        <div class="step-description">
+          Use OpenCV to control webcam, detect faces, track objects or gestures. Use PyAudio for recording or analyzing sounds.
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleStep(this)">
+        <h3>Step 9: AI Reply Engine</h3>
+        <div class="step-description">
+          Connect to ChatGPT API or use a local ML chatbot model to generate real-time replies based on natural language input.
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleStep(this)">
+        <h3>Step 10: Home Automation</h3>
+        <div class="step-description">
+          Control real-world devices using Raspberry Pi, ESP32, relays and protocols like MQTT. Use voice or buttons for automation.
+        </div>
+      </div>
+    </section>
+
+    <!-- No results message -->
+    <div class="no-results" id="noResults">No matching steps found. Try different keywords.</div>
+
+    <footer>&copy; 2025 Unix Hell Studicon.</footer>
+  </div>
+
+  <script>
+    function toggleStep(card) {
+      card.classList.toggle("expanded");
+    }
+
+    function searchSteps() {
+      const input = document.getElementById("searchInput").value.toLowerCase().trim();
+      const cards = document.querySelectorAll("#stepsGrid .card");
+      let found = false;
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(input)) {
+          card.style.display = "block";
+          found = true;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      document.getElementById("noResults").style.display = found ? "none" : "block";
+    }
+  </script>
+</body>
+</html>

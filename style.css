@@ -1,0 +1,260 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto; /* Allow vertical scroll */
+  color: #e0e0e0;               /* Light gray text */
+  background-color: #121212;    /* Dark almost black background */
+  scroll-behavior: smooth;
+}
+
+/* Background Video */
+#bg-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  filter: brightness(0.7) contrast(1.2);
+  object-fit: cover;
+}
+
+/* Overlay Container */
+.overlay {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px 20px;
+  backdrop-filter: blur(12px);
+  background: rgba(20, 20, 20, 0.75); /* darker semi-transparent */
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00ffffaa; /* subtle cyan glow */
+}
+
+/* Header Styles */
+header h1, header h2 {
+  font-size: 3em;
+  margin: 0;
+  color: #00ffff; /* neon cyan */
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
+}
+
+.tagline {
+  font-size: 1.2em;
+  color: #0ff; /* bright cyan */
+  margin-bottom: 20px;
+  text-shadow: 0 0 6px rgba(0, 255, 255, 0.6);
+}
+
+/* Navbar Styles */
+.navbar {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.navbar a {
+  color: #0ff; /* cyan */
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.navbar a:hover {
+  color: #ff00ff; /* neon magenta on hover */
+  border-color: #ff00ff;
+  box-shadow: 0 0 12px #ff00ff;
+}
+
+/* Search Box */
+.search-box {
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  max-width: 500px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-box input {
+  padding: 12px;
+  border: none;
+  flex: 1;
+  border-radius: 5px;
+  outline: none;
+  background-color: rgba(0, 255, 255, 0.15); /* translucent cyan */
+  color: #e0e0e0;
+  border: 1px solid #0ff;
+  min-width: 200px;
+  transition: background-color 0.3s ease;
+}
+
+.search-box input:focus {
+  background-color: rgba(0, 255, 255, 0.35);
+}
+
+.search-box button {
+  padding: 12px 24px;              /* Slightly wider for better click area */
+  border: none;
+  background-color: #0ff;          /* Neon cyan */
+  color: #000;                    /* Black text for contrast */
+  border-radius: 6px;             /* Slightly rounder */
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1em;
+  box-shadow: 0 0 12px 2px #0ff8, /* stronger cyan glow */
+              inset 0 0 8px #0ff4; /* subtle inner glow */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.search-box button:hover {
+  background-color: #0cc;             /* Slightly darker cyan */
+  box-shadow: 0 0 20px 4px #0ff,     /* bigger glow on hover */
+              inset 0 0 10px #0cc;
+  transform: scale(1.05);             /* subtle zoom on hover */
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loading-content {
+  text-align: center;
+  color: #0ff;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.studio-name {
+  font-size: 3em;
+  text-shadow: 0 0 15px #0ff, 0 0 25px #f0c;
+}
+
+.creator-vision {
+  font-size: 1.2em;
+  margin-top: 10px;
+  color: #ccc;
+  text-shadow: 0 0 8px #0ff;
+}
+
+.loading-bar-container {
+  width: 300px;
+  height: 10px;
+  background-color: #111;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 20px auto 0;
+  box-shadow: 0 0 8px #0ff;
+}
+
+.loading-bar {
+  height: 10px;
+  width: 0%;
+  background-color: #0ff;
+  transition: width 0.4s ease;
+  border-radius: 20px 0 0 20px;
+}
+
+/* Back Button */
+.back-button {
+  display: inline-block;
+  padding: 10px 22px;
+  background-color: #0ff;
+  color: #000;
+  font-weight: 600;
+  font-size: 1.1em;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 15px #0ff;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin: 30px auto;
+  user-select: none;
+  text-decoration: none;
+  text-align: center;
+}
+
+.back-button:hover {
+  background-color: #0cc;
+  box-shadow: 0 0 25px #0cc;
+  transform: translateY(-2px);
+}
+
+/* Enter Button - used for download links */
+.enter-button {
+  background: linear-gradient(45deg, #0ff, #f0f);
+  padding: 12px 32px;
+  color: #000;
+  font-weight: 700;
+  font-size: 1.25em;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 0 30px #0ff, 0 0 40px #f0f;
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+  display: inline-block;
+  text-decoration: none;
+  margin: 20px 10px;
+  user-select: none;
+  text-align: center;
+}
+
+.enter-button:hover {
+  background: linear-gradient(45deg, #f0f, #0ff);
+  box-shadow: 0 0 50px #f0f, 0 0 60px #0ff;
+  transform: scale(1.1);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 18px 12px;
+  font-size: 0.9em;
+  background-color: #111;
+  color: #0ff;
+  text-shadow: 0 0 6px #0ff;
+  user-select: none;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  header h1 {
+    font-size: 2.4em;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+
+  .navbar a {
+    margin: 6px 0;
+  }
+
+  .search-box {
+    max-width: 90%;
+  }
+
+  .enter-button {
+    padding: 10px 24px;
+    font-size: 1.1em;
+  }
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python Codes - 𝒶𝓂𝒶𝓏𝑒𝒹 𝓈𝓉𝓊𝒹𝒾𝑜</title>
+
+  <link rel="stylesheet" href="style.css" id="theme-style" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .ai-avatar {
+      position: fixed;
+      bottom: 20px; left: 20px;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: url('jarvis-orb.gif') no-repeat center/cover;
+      box-shadow: 0 0 25px cyan;
+      cursor: pointer;
+      z-index: 999;
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 20px cyan; }
+      50% { box-shadow: 0 0 40px #0ff; }
+    }
+
+    .card {
+      transform-style: preserve-3d;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover {
+      transform: rotateY(3deg) scale(1.02);
+      box-shadow: 0 0 30px #0ff;
+    }
+
+    .code-preview.typing pre {
+      white-space: pre-wrap;
+      overflow: hidden;
+      border-right: 2px solid #0ff;
+      animation: typing 4s steps(40, end), blink .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    .card-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons styling with filled color icons */
+    .card-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(0, 255, 255, 0.13); /* #0ff2 (hex alpha is invalid, replaced with rgba) */
+  color: #006666;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.4); /* #0ff66 adjusted to rgba */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+
+    .card-actions button i.fas {
+      color: #0ff; /* filled cyan icons */
+      font-size: 1.1em;
+      vertical-align: middle;
+      transition: color 0.3s ease;
+    }
+
+    .card-actions button:hover {
+      background: #0ff9;
+      color: #003333;
+      box-shadow: 0 0 18px #0fff;
+    }
+
+    .card-actions button:focus {
+      outline: 2px solid #0ff;
+      outline-offset: 2px;
+    }
+
+    .card-actions .show-more {
+      cursor: pointer;
+      font-weight: 700;
+      color: #0ff;
+      user-select: none;
+      align-self: center;
+      transition: color 0.3s ease;
+    }
+
+    .card-actions .show-more:hover {
+      color: #0cc;
+    }
+
+    #toTopBtn {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      padding: 14px 16px;
+      border: none;
+      border-radius: 50%;
+      background-color: rgba(0, 255, 255, 0.25);
+      color: #0ff;
+      font-size: 22px;
+      cursor: pointer;
+      display: none;
+      z-index: 999;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 15px #0ff;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    #toTopBtn i.fas {
+      vertical-align: middle;
+    }
+
+    #toTopBtn:hover {
+      background-color: #0ff;
+      color: #002222;
+      box-shadow: 0 0 25px #0ff;
+    }
+  </style>
+</head>
+<body class="default">
+  <video autoplay muted loop id="bg-video">
+    <source src="dashboard-bg.mp4" type="video/mp4" />
+  </video>
+
+  <audio autoplay loop hidden id="bg-audio">
+    <source src="ambient-loop.mp3" type="audio/mp3">
+  </audio>
+
+  <div class="ai-avatar" onclick="speak('Hello Master, ready to assist you in Python!')"></div>
+
+  <div class="overlay">
+    <header>
+      <h2>Python Codes</h2>
+      <a href="dashboard.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+    </header>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search Python projects..." onkeyup="filterCards()" />
+      <button onclick="filterCards()" aria-label="Search">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div>
+
+    <section class="grid" id="codeGrid"></section>
+
+    <p class="no-results" id="noResults">No matching projects found.</p>
+
+    <footer>&copy; 2025 𝒶𝓂𝒶𝓏𝑒𝒹 𝓈𝓉𝓊𝒹𝒾𝑜. All rights reserved.</footer>
+  </div>
+
+  <button id="toTopBtn" onclick="scrollToTop()" title="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script>
+    const codeData = [
+      { title: "Calculator App", code: `def add(a, b): return a + b\ndef main():\n  print(add(10, 5))\nif __name__ == '__main__':\n  main()` },
+      { title: "Alarm Clock", code: `import time\ndef alarm(seconds):\n  time.sleep(seconds)\n  print("Wake up!")\nalarm(3)` },
+      { title: "Weather App", code: `import requests\ncity = input("City: ")\ndata = requests.get(\`https://wttr.in/\${city}?format=3\`)\nprint(data.text)` },
+      { title: "Palindrome Checker", code: `def is_palindrome(s):\n  return s == s[::-1]\nprint(is_palindrome('madam'))` },
+      { title: "BMI Calculator", code: `def bmi(weight, height):\n  return weight / (height ** 2)\nprint(bmi(70, 1.75))` },
+      { title: "Guess Number", code: `import random\nn = random.randint(1, 10)\nguess = int(input("Guess: "))\nprint('Correct' if guess == n else 'Try again')` },
+      { title: "QR Generator", code: `import qrcode\nimg = qrcode.make('https://example.com')\nimg.save('qr.png')` },
+      { title: "Toss Coin", code: `import random\nprint(random.choice(['Heads', 'Tails']))` },
+      { title: "Countdown Timer", code: `import time\nfor i in range(5, 0, -1):\n  print(i)\n  time.sleep(1)\nprint('Go!')` },
+      { title: "Email Validator", code: `import re\nemail = input()\nprint(bool(re.match(r"[^@]+@[^@]+\\.[^@]+", email)))` }
+    ];
+
+    const grid = document.getElementById('codeGrid');
+    codeData.forEach((item, index) => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3>${item.title}</h3>
+        <div class="code-preview typing" onclick="toggleCode(this)" aria-expanded="false">
+          <pre class="language-python"><code>${item.code}</code></pre>
+        </div>
+        <div class="card-actions">
+          <button onclick="copyCode(${index})" aria-label="Copy code">
+            <i class="fas fa-clipboard"></i> Copy
+          </button>
+          <button onclick="downloadCode(${index})" aria-label="Download code">
+            <i class="fas fa-download"></i> Download
+          </button>
+          <span class="show-more" onclick="toggleCode(this.parentElement.previousElementSibling)">Show More</span>
+        </div>`;
+      grid.appendChild(card);
+    });
+
+    function filterCards() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const cards = document.querySelectorAll(".card");
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const title = card.querySelector("h3").innerText.toLowerCase();
+        if (title.includes(input)) {
+          card.style.display = "block";
+          visibleCount++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+      document.getElementById("noResults").style.display = visibleCount === 0 ? "block" : "none";
+    }
+
+    function toggleCode(el) {
+      if (!el) return;
+      const isExpanded = el.classList.toggle("expanded");
+      el.setAttribute("aria-expanded", isExpanded);
+      const btn = el.nextElementSibling?.querySelector(".show-more");
+      if (btn) btn.textContent = isExpanded ? "Show Less" : "Show More";
+    }
+
+    function speak(msg) {
+      const utter = new SpeechSynthesisUtterance(msg);
+      utter.pitch = 1.2; utter.rate = 1; utter.volume = 1;
+      speechSynthesis.speak(utter);
+    }
+
+    function copyCode(index) {
+      navigator.clipboard.writeText(codeData[index].code)
+        .then(() => speak("Code copied to clipboard."));
+    }
+
+    function downloadCode(index) {
+      const blob = new Blob([codeData[index].code], { type: 'text/x-python' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${codeData[index].title.replace(/\s+/g, '_')}.py`;
+      a.click();
+      URL.revokeObjectURL(url);
+      speak("Download started.");
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.onscroll = () => {
+      document.getElementById("toTopBtn").style.display = window.scrollY > 400 ? "block" : "none";
+    };
+  </script>
+</body>
+</html>

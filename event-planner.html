@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI-powered event planning tool for birthdays, weddings, and more. Fully responsive for mobile." />
+  <title>Smart Event Planner</title>
+  <link rel="stylesheet" href="event-style.css" />
+  <script defer src="event-script.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Smart Event Planner</h1>
+      <p>Let AI plan the perfect event for you based on your budget and ideas!</p>
+    </header>
+
+    <form id="eventForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="minBudget">Minimum Budget (₹):</label>
+          <input type="number" id="minBudget" name="minBudget" required />
+        </div>
+        <div class="form-group">
+          <label for="maxBudget">Maximum Budget (₹):</label>
+          <input type="number" id="maxBudget" name="maxBudget" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="eventDate">Event Date:</label>
+          <input type="date" id="eventDate" name="eventDate" required />
+        </div>
+        <div class="form-group">
+          <label for="eventType">Event Category:</label>
+          <select id="eventType" name="eventType" required>
+            <option value="">Select Category</option>
+            <option value="birthday">Birthday</option>
+            <option value="wedding">Wedding</option>
+            <option value="office party">Office Party</option>
+            <option value="anniversary">Anniversary</option>
+            <option value="baby shower">Baby Shower</option>
+            <option value="corporate event">Corporate Event</option>
+            <option value="cultural fest">Cultural Fest</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Event Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="guests">Guests:</label>
+          <input type="number" id="guests" name="guests" required />
+        </div>
+        <div class="form-group">
+          <label for="location">Preferred Location:</label>
+          <input type="text" id="location" name="location" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="specialRequests">Special Requests (optional):</label>
+        <input type="text" id="specialRequests" name="specialRequests" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Your Email (to send a detailed plan):</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <button type="submit">Generate AI Suggestions</button>
+    </form>
+
+    <section class="result" id="suggestionBox">
+      <h2>Your AI-Powered Event Suggestions Will Appear Here</h2>
+      <div id="output"></div>
+    </section>
+
+    <footer>
+      <p>© 2025 Smart Event Planner | <a href="#">Contact Us</a> | <a href="#">Privacy</a> | <a href="#">Terms</a></p>
+    </footer>
+  </div>
+</body>
+</html>

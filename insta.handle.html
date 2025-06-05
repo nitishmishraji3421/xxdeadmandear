@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Instagram + WhatsApp Contact</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #000, #1a1a1a);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 0 20px #00ffffaa;
+      text-align: center;
+    }
+    .container h1 {
+      font-size: 28px;
+      color: #00ffff;
+      margin-bottom: 10px;
+    }
+    .bot-msg {
+      background: #111;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+      border-left: 4px solid #00ffff;
+      text-align: left;
+    }
+    a.insta-link {
+      display: inline-block;
+      margin: 10px 0;
+      color: #00ffff;
+      font-weight: bold;
+      text-decoration: none;
+      background: #fff1;
+      padding: 10px 20px;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+    a.insta-link:hover {
+      background: #00ffff;
+      color: #000;
+    }
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      resize: vertical;
+      margin-top: 15px;
+      font-size: 16px;
+      background: #222;
+      color: #0ff;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: linear-gradient(to right, #00ccff, #00ffff);
+      border: none;
+      border-radius: 10px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Follow Me on Instagram</h1>
+    <a class="insta-link" href="https://www.instagram.com/coder_crack_it?igsh=MTV1YmhsM3RjcnpoNg==" target="_blank">@Computer-Gyani</a>
+
+    <div class="bot-msg">
+      <strong>J.A.R.V.I.S.:</strong> You visited our website 𝒶𝓂𝒶𝓏𝑒𝒹 𝓈𝓉𝓊𝒹𝒾𝑜. Let me know your feedback and queries through insta link or direct whatsapp feedbox.
+    </div>
+
+    <textarea id="userMessage" rows="4" placeholder="Your feedback or question..."></textarea>
+    <button onclick="sendToWhatsApp()">Send message</button>
+  </div>
+
+  <script>
+    function sendToWhatsApp() {
+      const msg = document.getElementById("userMessage").value.trim();
+      if (!msg) {
+        alert("Please write something first.");
+        return;
+      }
+
+      const phone = "9534141604"; // Your WhatsApp number without +
+      const text = encodeURIComponent(`Hello! I visited your website and here's my message:\n\n"${msg}"\n\n- From your site`);
+      const link = `https://wa.me/${phone}?text=${text}`;
+      window.open(link, "_blank");
+    }
+  </script>
+
+</body>
+</html>

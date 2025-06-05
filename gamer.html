@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gamers Hub - 𝒶𝓂𝒶𝓏𝑒𝒹 𝓈𝓉𝓊𝒹𝒾𝑜</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #000;
+    color: #fff;
+  }
+
+  #bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  .overlay {
+    position: relative;
+    padding: 30px;
+    text-align: center;
+    backdrop-filter: blur(6px);
+  }
+
+  .back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #abd1cf;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .back-button:hover {
+    border-color: #00ffee;
+  }
+
+  header h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #00ffee;
+    text-shadow: 0 0 10px #00ffee;
+  }
+
+  .market-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin: 20px auto 40px;
+    max-width: 1000px;
+  }
+
+  .id-card {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    color: #fff;
+    text-align: left;
+    transition: 0.3s;
+  }
+
+  .id-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px #00ffeeaa;
+  }
+
+  .id-card button {
+    margin-top: 12px;
+    padding: 10px 18px;
+    background: linear-gradient(to right, #00ffee, #00cfff);
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+
+  .id-card button:hover {
+    background: linear-gradient(to right, #ff00ff, #00ffee);
+    color: #fff;
+    box-shadow: 0 0 15px #ff00ff88;
+  }
+
+  .chat-box {
+    max-width: 800px;
+    margin: 0 auto;
+    height: 300px;
+    background: rgba(0,0,0,0.4);
+    overflow-y: auto;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: left;
+    color: #fff;
+    font-size: 15px;
+    box-shadow: 0 0 12px #00ffee44;
+  }
+
+  .chat-box div {
+    margin-bottom: 10px;
+    background: #222;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+
+  .chat-box div:hover {
+    background: #330000;
+    color: #ff9999;
+  }
+
+  .chat-input {
+    display: flex;
+    max-width: 800px;
+    margin: 15px auto;
+    gap: 10px;
+  }
+
+  .chat-input input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #00ffee;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .chat-input input:focus {
+    outline: none;
+    border-color: #ff00ff;
+    box-shadow: 0 0 10px #ff00ff66;
+  }
+
+  .chat-input button {
+    padding: 12px 24px;
+    background: linear-gradient(to right, #00ffee, #00cfff);
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .chat-input button:hover {
+    background: linear-gradient(to right, #ff00ff, #00ffee);
+    color: #fff;
+    box-shadow: 0 0 12px #ff00ff88;
+  }
+
+  footer {
+    margin-top: 50px;
+    color: #aaa;
+    font-size: 14px;
+  }
+</style>
+
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="dashboard-bg.mp4" type="video/mp4" />
+  </video>
+  <div class="overlay">
+    <a href="dashboard.html" class="back-button">← Back</a>
+    <header><h2>Gamers Hub & ID Marketplace</h2></header>
+
+    <!-- Marketplace -->
+    <section class="market-grid">
+      <div class="id-card">
+        <strong>Free Fire MAX ID</strong><br>
+        Price: ₹250<br>
+        Owner: Rohan<br>
+        <button>Contact</button>
+      </div>
+      <div class="id-card">
+        <strong>BGMI Premium ID</strong><br>
+        Price: ₹800<br>
+        Owner: Aaryan<br>
+        <button>Contact</button>
+      </div>
+    </section>
+
+    <!-- Chat -->
+    <div class="chat-box" id="chatBox">
+      <div><strong>Aryan:</strong> Anyone buying BGMI ID?</div>
+      <div><strong>Riya:</strong> Yes, send me details!</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chatMsg" placeholder="Type your message..." />
+      <button onclick="sendChat()">Send</button>
+    </div>
+
+    <footer>&copy; 2025 𝒶𝓂𝒶𝓏𝑒𝒹 𝓈𝓉𝓊𝒹𝒾𝑜</footer>
+  </div>
+
+  <script>
+    function sendChat() {
+      const msg = document.getElementById("chatMsg").value;
+      if (msg.trim()) {
+        const box = document.getElementById("chatBox");
+        box.innerHTML += `<div><strong>You:</strong> ${msg}</div>`;
+        document.getElementById("chatMsg").value = '';
+        box.scrollTop = box.scrollHeight;
+      }
+    }
+  </script>
+</body>
+</html>

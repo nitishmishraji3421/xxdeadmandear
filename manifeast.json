@@ -1,0 +1,52 @@
+{
+  "name": "𝒶𝓂𝒶𝓏𝑒𝒹 𝓈𝓉𝓊𝒹𝒾𝑜 - JARVIS AI",
+  "short_name": "Studicon",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "./",
+  "background_color": "#121212",
+  "theme_color": "#0ff",
+  "description": "Voice-controlled AI Assistant - JARVIS | Games, Downloads, Wallpapers, and More.",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/home.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    },
+    {
+      "src": "screenshots/dashboard.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Speak to JARVIS",
+      "short_name": "Speak",
+      "url": "index.html#voiceBtn",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Go to Dashboard",
+      "short_name": "Dashboard",
+      "url": "dashboard.html",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false
+}
